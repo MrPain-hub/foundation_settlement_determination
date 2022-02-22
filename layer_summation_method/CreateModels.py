@@ -181,22 +181,4 @@ class CreatePlate(CreateMaterial):
 
 
 if __name__ == "__main__":
-    mat = CreateMaterial()
-    soil1 = Soil(10, -2, [9, 0])
-    borehole = CreateBorehole(0, 0)
-    borehole.addSoils([soil1, mat])
-    mat.change = ("E", 2 + 3)
-    print(borehole.change)
-    print(borehole.change[0][0].change)
-    borehole.change[0][0].change["Bot"] = -10
-    print(borehole.change[0][0].change)
-    print(borehole.change[0][1].change)
-    borehole.createSoil(bot=-8, water=True)
-    Load1 = CreateLoad("P", load=100)
-    Load2 = CreateLoad("P", load=15)
-    plate1 = CreatePlate()
-    plate1.change = ("length", 100)
-    plate1.addLoads(Load1, Load2)
-    ic(plate1.change["Load"][0].change)
-    Load1.change = ("load", 30)
-    ic(plate1.change["Load"][0].change)
+    pass
