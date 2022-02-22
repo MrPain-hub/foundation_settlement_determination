@@ -1,6 +1,6 @@
-from CreateClass import *
-from file_script import *
-from icecream import ic
+from CreateModels import *
+from Methods import *
+
 """
 Входные данные
 """

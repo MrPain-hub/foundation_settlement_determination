@@ -1,5 +1,3 @@
-from icecream import ic
-from CreateClass import *
 
 
 class LayerSumMethod:
