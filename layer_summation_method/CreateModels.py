@@ -1,6 +1,3 @@
-from icecream import ic
-
-
 class CreateMaterial:
     """
     Класс создания материала
