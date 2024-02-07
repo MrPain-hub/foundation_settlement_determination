@@ -1,0 +1,6 @@
+# Исключить
+.idea
+.ipynb_checkpoints
+
+# Исключить все xlsx файлы
+*.xlsx
