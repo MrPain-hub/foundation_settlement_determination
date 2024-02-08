@@ -153,7 +153,7 @@ class CreatePlate(CreateMaterial):
             - CreatePlate.change = [key, value]    # data[key] = value
             - del CreatePlate.change               # data = __def_data
     """
-    def __init__(self, Type="rectangular", diameter=None, length=10, width=10, thicknes=1, gamma=None, FL=None,Load=[]):
+    def __init__(self, Type="rectangular", diameter=None, length=10, width=10, thicknes=1, gamma=None, FL=None, Load=[]):
         self.__def_data = {"Type": Type,
                            "d": diameter,
                            "length": length,
@@ -175,6 +175,18 @@ class CreatePlate(CreateMaterial):
         Удалить все нагрузки
         """
         self.data["Load"] = []
+
+
+class CreatePile(CreateMaterial):
+    """
+    Создание сваи
+        Унаследовал method change:
+            - CreatePile.change                   # return data
+            - CreatePile.change = [key, value]    # data[key] = value
+            - del CreatePile.change               # data = __def_data
+    """
+    def __init__(self, **kwargs):
+        self.data = kwargs
 
 
 if __name__ == "__main__":
