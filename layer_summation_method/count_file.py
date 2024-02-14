@@ -59,6 +59,7 @@ for i, soil in enumerate(dict_soil):
                           material=dict_ige[dict_soil[soil]]
                           )
 Borehole_1.change[0][0].change["Top"] = z_soils[0]
+Borehole_1.change[0][0].change["h_soil"] = z_soils[0] - z_soils[1]
 
 """
 Создание нагрузки и плиты
@@ -78,7 +79,6 @@ Mps = LayerSumMethod(Borehole_1,
                      )
 Mps.calculation()
 
-print(Borehole_1.change[0][0].change["Top"])
 print(f"осадка {Mps.Output()[0]}")
 print(f"Отметка {Mps.comparison()}")
 ic(Mps.Output()[1])

@@ -1,3 +1,6 @@
+import pandas as pd
+
+
 class LayerSumMethod:
     """
     Расчет МПС
@@ -348,6 +351,62 @@ class LayerSumMethod:
 
     def Output(self):
         return self.settlement, self.dataZ
+
+
+class PileBearingCapacity:
+    """
+    На вход подается 3 объекта
+    Borehole - class CreateBorehole
+    Pile - class CreatePile
+    Load - class CreateLoad
+    """
+    def __init__(self,
+                 Borehole,
+                 Pile,
+                 Load,
+                 **kwargs
+                 ):
+
+        self.Borehole = Borehole
+        self.Pile = Pile
+        self.Load = Load
+
+        self.gamma_c = kwargs.get("gamma_c", 1)
+
+        self.__get_params_from_object__()
+        self.__read_table__(kwargs.get("path_data", ""))
+
+    def __get_params_from_object__(self):
+        """
+        Параметры полученные из классов Borehole, Pile, Load
+        """
+        """
+            Pile
+        """
+        self.A = self.Pile["A"]
+        self.z_heel = self.Pile["z"] + self.Pile["length"]
+
+        """
+            Load
+        """
+        self.load_value = self.Load["load"]
+
+        """
+            Borehole
+        """
+        for num, item in self.Borehole.data.items():
+            layer, material = item
+            if self.z_heel <= layer["Top"]:
+                self.soil_heel = item
+                break
+
+    def __read_table__(self, path):
+        """
+        Чтение таблиц из СП
+        """
+        self.df_f = pd.read_excel(path + "data\\f_table.xlsx", index_col="index")
+        self.df_R = pd.read_excel(path + "data\\R_table.xlsx")
+        self.df_gamma = pd.read_excel(path + "data\\gamma_table.xlsx", usecols="C:F")
 
 
 if __name__ == "__main__":
