@@ -82,3 +82,5 @@ Mps.calculation()
 print(f"осадка {Mps.Output()[0]}")
 print(f"Отметка {Mps.comparison()}")
 ic(Mps.Output()[1])
+print(load_1.data["load"])
+

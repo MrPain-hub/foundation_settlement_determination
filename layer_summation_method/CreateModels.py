@@ -5,7 +5,8 @@ class CreateMaterial:
     def __init__(self):
         self.__def_data = {"E": None,     # модуль деформации
                            "nu": 0.3,     # коэф. пуассона
-                           "gamma": None  # удельный вес
+                           "gamma": None,  # удельный вес
+                           "kind": None  # Вид почвы
                            }
         self.data = self.__def_data
 
