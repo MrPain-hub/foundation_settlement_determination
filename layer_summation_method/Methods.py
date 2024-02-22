@@ -547,12 +547,19 @@ class PileBearingCapacity:
                 else:
                     z_bot = soil_bot
 
-                while z_top > z_bot:
+                while z_top >= z_bot + self.hi_step:
+                    """
+                    Считать все слои кратные hi_step
+                    """
                     fi = self.__interpolation__(df_f, self.hi_step, IL, rows, columns)
                     Fd_side += gamma_rf * fi * self.hi_step
                     z_top -= self.hi_step
 
-                if self.hi_step > z_top - z_bot:
+                if z_top - z_bot > 0:
+                    """
+                    Если расстояние между (z_top; z_bot) < hi_step
+                    То учесть этот слой
+                    """
                     fi = self.__interpolation__(df_f, z_top - z_bot, IL, rows, columns)
                     Fd_side += gamma_rf * fi * (z_top - z_bot)
 
@@ -633,5 +640,6 @@ if __name__ == "__main__":
 
     print(class_Fd.get_Fd_under())
     print(class_Fd.get_Fd_side())
+    print(class_Fd.get_Fd())
 
 
